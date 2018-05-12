@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 12, 2018 at 10:12 PM
+-- Generation Time: May 12, 2018 at 11:18 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.8
 
@@ -40,6 +40,25 @@ INSERT INTO `migrations` (`migration`, `batch`) VALUES
 ('2016_03_31_065856_create_roles_table', 1),
 ('2016_03_31_070114_create_user_role_table', 1),
 ('2018_05_12_171554_create_sessions_table', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ranks`
+--
+
+CREATE TABLE `ranks` (
+  `id` int(11) NOT NULL,
+  `rank_name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `ranks`
+--
+
+INSERT INTO `ranks` (`id`, `rank_name`) VALUES
+(1, 'soldier'),
+(2, 'officer');
 
 -- --------------------------------------------------------
 
@@ -131,9 +150,41 @@ INSERT INTO `user_role` (`id`, `created_at`, `updated_at`, `user_id`, `role_id`)
 (3, NULL, NULL, 3, 3),
 (4, NULL, NULL, 4, 4);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `warriors`
+--
+
+CREATE TABLE `warriors` (
+  `id` int(11) NOT NULL,
+  `rank_id` int(11) NOT NULL,
+  `warrior_name` varchar(50) NOT NULL,
+  `national_id` varchar(50) NOT NULL,
+  `birth_date` date NOT NULL,
+  `military_number` varchar(50) NOT NULL,
+  `address` varchar(50) NOT NULL,
+  `phone_number` varchar(50) NOT NULL,
+  `closest_relation` varchar(50) NOT NULL,
+  `closest_rel_name` varchar(50) NOT NULL,
+  `closest_rel_phone` varchar(50) NOT NULL,
+  `tashkeel_id` int(11) NOT NULL,
+  `unit_id` int(11) NOT NULL,
+  `weapon_id` int(11) NOT NULL,
+  `mandoob_name` varchar(50) NOT NULL,
+  `mandoob_number` int(11) NOT NULL,
+  `situation_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `ranks`
+--
+ALTER TABLE `ranks`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `roles`
@@ -161,9 +212,20 @@ ALTER TABLE `user_role`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `warriors`
+--
+ALTER TABLE `warriors`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
+--
+-- AUTO_INCREMENT for table `ranks`
+--
+ALTER TABLE `ranks`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `roles`
 --
@@ -179,6 +241,11 @@ ALTER TABLE `users`
 --
 ALTER TABLE `user_role`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `warriors`
+--
+ALTER TABLE `warriors`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
